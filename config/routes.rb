@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'homes/about'
+    get 'homes/top'
+  end
   root to: "public/homes#top"
 
   scope module: :public do

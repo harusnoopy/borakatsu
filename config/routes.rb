@@ -1,50 +1,28 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'users/edit'
-    get 'users/show'
-    get 'users/unsubscribe'
-  end
-  namespace :public do
-    get 'participations/confirm'
-    get 'participations/index'
-    get 'participations/show'
-  end
-  namespace :public do
-    get 'organizers/show'
-  end
-  namespace :public do
-    get 'favorites/create'
-    get 'favorites/destroy'
-    get 'favorites/index'
-  end
-  namespace :public do
-    get 'events/index'
-    get 'events/show'
-  end
-  namespace :admin do
-    get 'users/edit'
-    get 'users/index'
-    get 'users/show'
-  end
-  namespace :admin do
-    get 'participations/index'
-  end
-  namespace :admin do
-    get 'organizers/edit'
-    get 'organizers/index'
-    get 'organizers/new'
-    get 'organizers/show'
-  end
-  namespace :admin do
-    get 'events/edit'
-    get 'events/index'
-    get 'events/new'
-    get 'events/show'
-  end
   root to: "public/homes#top"
 
-  get 'about' => 'homes#about'
+  scope module: :public do
+    get 'about' => 'homes#about'
+    resources :organizers, only: [:show]
+    resources :participations, only: [:create, :index, :show, :update]
+    post 'participations/confirm' => 'participations#confirm', as: 'confirm'
+    resource :user, only: [:show, :edit, :update]
+    get 'user/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch 'user/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+    resources :events, only: [:index, :show] do
+      resource :favorites, only: [:create, :destroy]
+    end
+    get 'favorites' => 'favorites#index'
+  end
+
+  namespace :admin do
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :organizers, except: [:destroy]
+    resources :events, except: [:destroy] do
+      resources :participations, only: [:index]
+    end
+  end
 
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",

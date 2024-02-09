@@ -1,2 +1,50 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 offset-md-1">
+      <h5 class="mt-4 mx-5 mb-2"><%= @user.last_name %> <%= @user.first_name %> さんの会員詳細</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <table class="table table-borderless">
+        <tr>
+          <th class="col-4">会員No.</th>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <td><%= @user.last_name %>　<%= @user.first_name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @user.last_name_kana %>　<%= @user.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @user.telephone_number %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th>ステータス</th>
+          <td>
+            <% if @user.is_deleted == false %>
+              <p class="text-success m-0"><strong>有効</strong></p>
+            <% else %>
+              <p class="text-secondary m-0">退会</p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <% if @user.is_deleted == false %>
+    <div class="row justify-content-center">
+      <%= link_to "編集する", edit_admin_user_path(@user.id), class: "btn btn-success my-3 px-4" %>
+    </div>
+  <% end %>
+</div>

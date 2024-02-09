@@ -1,2 +1,53 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 offset-md-1">
+      <p class="font-weight-bold mt-4 mx-3">会員情報編集</p>
+    </div>
+  </div>
+
+  <%= form_with model: @user, url: user_path do |f| %>
+    <div class="row">
+      <div class="col-md-8 offset-md-4">
+        <% if @user.errors.any? %>
+          <%= @user.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <table class="table table-borderless">
+          <tr>
+            <th>氏名</th>
+            <td><%= f.text_field :last_name, autocomplete: "last_name", autofocus: true, style: "width:100%" %></td>
+            <td><%= f.text_field :first_name, autocomplete: "first_name", style: "width:100%" %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= f.text_field :last_name_kana, autocomplete: "last_name_kana", style: "width:100%" %></td>
+            <td><%= f.text_field :first_name_kana, autocomplete: "first_name_kana", style: "width:100%" %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= f.text_field :telephone_number, autocomplete: "telephone_number", style: "width:100%" %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td colspan="2"><%= f.email_field :email, autocomplete: "email", style: "width:100%" %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <%= f.submit "編集内容を保存", class: "btn btn-success my-3 px-5" %>
+      <%= link_to "退会する",  unsubscribe_path, class: "btn btn-danger my-3 ml-5 px-4" %>
+    </div>
+  <% end %>
+</div>

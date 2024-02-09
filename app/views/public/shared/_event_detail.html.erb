@@ -5,8 +5,14 @@
 <tr>
   <th class="pt-3 pr-5">主催者</th>
   <td class="pt-3">
-    <%= link_to organizer_path(event.organizer.id) do %>
-      <%= event.organizer.name %>
+    <% if admin_signed_in? %>
+      <%= link_to admin_organizer_path(event.organizer.id) do %>
+        <%= event.organizer.name %>
+      <% end %>
+    <% else %>
+      <%= link_to organizer_path(event.organizer.id) do %>
+        <%= event.organizer.name %>
+      <% end %>
     <% end %>
   </td>
 </tr>

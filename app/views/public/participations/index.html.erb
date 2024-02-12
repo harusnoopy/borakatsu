@@ -1,2 +1,42 @@
-<h1>Public::Participations#index</h1>
-<p>Find me in app/views/public/participations/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 offset-md-1">
+      <h5 class="mt-4 mx-5 mb-2">応募したイベント</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <table class="table table-borderless">
+        <tr>
+          <th scope="col">イベント名</th>
+          <th scope="col">開催日</th>
+          <th scope="col">場所</th>
+          <th scope="col">応募状況</th>
+        </tr>
+        <% current_user.participations.reverse.each do |participation| %>
+          <tr>
+            <td>
+              <%= link_to event_path(participation.event.id) do %>
+                <%= participation.event.name %>
+              <% end %>
+            </td>
+            <td><%= participation.event.date.strftime('%Y/%m/%d') %></td>
+            <td><%= participation.event.place %></td>
+            <td>
+              <% if participation.is_applying == true %>
+                <p class="text-info m-0"><strong>応募済</strong></p>
+              <% else %>
+                <p class="text-secondary m-0">キャンセル</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-3">
+    <%= paginate @participations %>
+  </div>
+</div>

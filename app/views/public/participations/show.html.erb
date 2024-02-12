@@ -1,2 +1,19 @@
-<h1>Public::Participations#show</h1>
-<p>Find me in app/views/public/participations/show.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center mt-3">
+    <p id="notice"><%= notice %></p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 offset-md-1">
+      <h5 class="mx-5 mb-2">応募イベント詳細</h5>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col offset-md-1">
+      <table>
+        <%= render 'public/shared/event_detail', event: @participation.event %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,58 @@
-<h1>Public::Events#show</h1>
-<p>Find me in app/views/public/events/show.html.erb</p>
+<div class="container">
+
+  <div class="row justify-content-center mt-2">
+    <p id="notice"><strong><%= notice %></strong></p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 offset-md-1">
+      <h5 class="mx-5 mb-2">イベント詳細</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col offset-md-1">
+      <table>
+        <%= render 'public/shared/event_detail', event: @event %>
+        <tr>
+          <th class="pt-3 pr-5">募集状況</th>
+          <td class="pt-3">
+            <% if @event.is_recruiting == true %>
+              <p class="text-success m-0"><strong>募集中</strong></p>
+            <% else %>
+              <p class="text-secondary m-0">締切</p>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+      </table>
+      <div class="pt-3 pr-5">
+        <%= image_tag @event.get_image.variant(resize: "250x200^", gravity: "center", crop: "250x200+0+0").processed %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-3">
+    <% if user_signed_in? %>
+      <% if @event.is_recruiting == true && @event_participation == nil %>
+        <%= form_with model: @participation, url: confirm_path do |f| %>
+          <div class="form-inline">
+            <%= f.hidden_field :event_id, :value => @event.id %>
+            <%= f.submit "応募する", class: "btn btn-success px-3 mx-3" %>
+          </div>
+        <% end %>
+      <% elsif @event_participation.is_applying == true %>
+        <%= form_with model: @participation, url: participation_path, method: :patch do |f| %>
+          <div class="form-inline">
+            <%= f.hidden_field :event_id, :value => @event.id %>
+            <%= f.submit "応募をキャンセルする", class: "btn btn-danger px-3 mx-3", data: {confirm: "キャンセルしてもよろしいですか？"} %>
+          </div>
+        <% end %>
+      <% elsif @event_participation.is_applying == false %>
+        <div class="form-inline">
+          <p class="text-info font-weight-bold mt-3">キャンセル済</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

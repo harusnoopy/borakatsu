@@ -11,7 +11,7 @@
         <tr>
           <th scope="col">イベント名</th>
           <th scope="col">日付</th>
-          <th scope="col">主催者</th>
+          <th scope="col">場所</th>
           <th scope="col">募集状況</th>
           <th scope="col">いいね</th>
         </tr>
@@ -24,7 +24,7 @@
               <% end %>
             </td>
             <td><%= event.date.strftime('%Y/%m/%d') %></td>
-            <td><%= event.organizer.name %></td>
+            <td><%= event.place %></td>
             <td>
               <% if event.is_recruiting == true %>
                 <p class="text-success m-0"><strong>募集中</strong></p>

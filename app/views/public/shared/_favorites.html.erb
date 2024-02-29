@@ -2,7 +2,7 @@
   <%= link_to event_favorites_path(event.id), method: :delete, remote: true do %>
     <i class="fas fa-heart color_pink"></i> <%= event.favorites.count %>
   <% end %>
-  <% else %>
+<% else %>
   <%= link_to event_favorites_path(event.id), method: :post, remote: true do %>
     <i class="far fa-heart"></i> <%= event.favorites.count %>
   <% end %>

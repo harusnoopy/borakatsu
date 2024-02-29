@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 2024_01_25_065559) do
     t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"user_id\", \"post_id\"", name: "index_favorites_on_user_id_and_post_id", unique: true
     t.index ["event_id"], name: "index_favorites_on_event_id"
+    t.index ["user_id", "event_id"], name: "index_favorites_on_user_id_and_event_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 

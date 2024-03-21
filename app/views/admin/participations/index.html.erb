@@ -24,7 +24,7 @@
             </td>
             <td><%= participation.user.email %></td>
             <td>
-              <% if participation.is_applying == false %>
+              <% if participation.is_applying == true %>
                 <p class="text-success m-0"><strong>応募中</strong></p>
               <% else %>
                 <p class="text-secondary m-0">キャンセル</p>

@@ -32,26 +32,20 @@
     </div>
   </div>
 
-  <div class="row justify-content-center mb-3">
+  <div class="row justify-content-center my-3">
     <% if user_signed_in? %>
-      <% if @event.is_recruiting == true && @event_participation == nil %>
+      <% if @event.is_recruiting == true && @event_participation.nil? %>
         <%= form_with model: @participation, url: confirm_path do |f| %>
-          <div class="form-inline">
-            <%= f.hidden_field :event_id, :value => @event.id %>
-            <%= f.submit "応募する", class: "btn btn-success px-3 mx-3" %>
-          </div>
+          <%= f.hidden_field :event_id, :value => @event.id %>
+          <%= f.submit "応募する", class: "btn btn-success px-3 mx-3" %>
         <% end %>
-      <% elsif @event_participation.is_applying == true %>
+      <% elsif @event_participation&.is_applying == true %>
         <%= form_with model: @participation, url: participation_path, method: :patch do |f| %>
-          <div class="form-inline">
-            <%= f.hidden_field :event_id, :value => @event.id %>
-            <%= f.submit "応募をキャンセルする", class: "btn btn-danger px-3 mx-3", data: {confirm: "キャンセルしてもよろしいですか？"} %>
-          </div>
+          <%= f.hidden_field :event_id, :value => @event.id %>
+          <%= f.submit "応募をキャンセルする", class: "btn btn-danger px-3 mx-3", data: {confirm: "キャンセルしてもよろしいですか？"} %>
         <% end %>
-      <% elsif @event_participation.is_applying == false %>
-        <div class="form-inline">
-          <p class="text-info font-weight-bold mt-3">キャンセル済</p>
-        </div>
+      <% elsif @event_participation&.is_applying == false %>
+        <p class="text-info font-weight-bold mt-3">キャンセル済</p>
       <% end %>
     <% end %>
   </div>

@@ -13,7 +13,7 @@
           <th class="pt-3 pr-5">応募人数</th>
           <td class="pt-3">
             <%= link_to admin_event_participations_path(@event.id) do %>
-              <%= @event.participations.count %>名
+              <%= @event.participations.select { |participation| participation.is_applying == true }.count %>名
             <% end %>
           </td>
         </tr>

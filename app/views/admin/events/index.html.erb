@@ -30,7 +30,7 @@
             <td><%= event.date.strftime('%Y/%m/%d') %></td>
             <td>
               <%= link_to admin_event_participations_path(event.id) do %>
-                <%= event.participations.count %> 名
+                <%= event.participations.select { |participation| participation.is_applying == true }.count %>名
               <% end %>
               </td>
             <td>

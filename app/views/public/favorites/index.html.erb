@@ -33,7 +33,7 @@
               <% end %>
             </td>
             <td>
-              <%= link_to event_favorites_path(favorite.event_id), method: :delete do %>
+              <%= link_to event_favorites_path(favorite.event.id), method: :delete do %>
                 <i class="fas fa-heart color_pink"></i> <%= favorite.event.favorites.count %>
               <% end %>
             </td>

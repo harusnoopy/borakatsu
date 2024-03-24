@@ -1,6 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 
 body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: #47A6A5;
   min-height: 100vh;
   position: relative;
   padding-bottom: 90px;
@@ -44,4 +46,29 @@ footer {
   height: 30px;
   padding: 0;
   border-radius: 50%;
+}
+
+h5 {
+  color: #F99891;
+  font-weight: bold;
+}
+
+.table {
+  color: #47A6A5;
+}
+
+.table th {
+  font-size: 1.1em;
+}
+
+a {
+  color: #47A6A5;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+}
+
+.color_pink {
+  color: #F99891;
 }

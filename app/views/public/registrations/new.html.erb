@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row justify-content-center mt-2">
-    <p id="notice"><%= notice %></p>
+  <div class="d-flex justify-content-center mt-3 mb-1">
+    <div class="notice"><%= notice %></div>
   </div>
 
   <div class="row">
@@ -10,10 +10,10 @@
   </div>
 
   <% if @user.errors.any? %>
-    <div class="row justify-content-center mb-3">
+    <div class="d-flex justify-content-center mb-3">
       <%= @user.errors.count %>件のエラーが発生しました
     </div>
-    <div class="row justify-content-center mb-3">
+    <div class="d-flex justify-content-center mb-3">
       <ul>
         <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -23,7 +23,7 @@
   <% end %>
 
   <%= form_with model: @user, url: user_registration_path do |f| %>
-    <div class="row justify-content-center">
+    <div class="d-flex justify-content-center">
       <table>
         <div class="field">
           <tr>

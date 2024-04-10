@@ -1,17 +1,17 @@
 <div class="container">
-  <div class="d-flex justify-content-center mt-3 mb-1">
+  <div class="d-flex justify-content-center mt-3 mb-2">
     <div class="notice"><strong><%= notice %></strong></div>
   </div>
 
   <div class="row">
     <div class="col-md-9 offset-md-1">
-      <h5 class="mx-5 mb-2">応募イベント詳細</h5>
+      <h5 class="mx-5 mb-3">応募イベント詳細</h5>
     </div>
   </div>
 
-  <div class="row mb-3">
-    <div class="col offset-md-1">
-      <table>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <table class="table table-borderless">
         <%= render 'public/shared/event_detail', event: @participation.event %>
       </table>
     </div>

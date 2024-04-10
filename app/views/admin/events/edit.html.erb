@@ -20,35 +20,79 @@
 
   <%= form_with model: @event, url: admin_event_path do |f| %>
     <div class="row">
-      <div class="col-10 offset-md-1">
+      <div class="col-md-10 offset-md-1">
         <table class="table table-borderless">
           <tr>
-            <th class="col-md-3 col-sm-4"><%= f.label :organizer_id, "主催者" %></th>
+            <th class="col-3"><%= f.label :organizer_id, "主催者" %></th>
             <td><%= f.collection_select :organizer_id, Organizer.all, :id, :name %></td>
           </tr>
           <tr>
             <th><%= f.label :name, "イベント名" %></th>
-            <td><%= f.text_field :name, autocomplete: "name", placeholder: "イベント名", style: "width:100%" %></td>
+            <td>
+              <%= f.text_field :name, autocomplete: "name", placeholder: "イベント名", style: "width:100%" %>
+              <% if @event.errors.any? %>
+                <% if @event.errors.has_key?(:name) %>
+                  <p class="text-danger"><%= @event.errors[:name].first %></p>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <th><%= f.label :introduction, "概要" %></th>
-            <td><%= f.text_area :introduction, autocomplete: "introduction", placeholder: "ここにイベント概要を記述します", style: "width:100%", rows: "7" %></td>
+            <td>
+              <%= f.text_area :introduction, autocomplete: "introduction", placeholder: "ここにイベント概要を記述します", style: "width:100%", rows: "7" %>
+              <% if @event.errors.any? %>
+                <% if @event.errors.has_key?(:introduction) %>
+                  <p class="text-danger"><%= @event.errors[:introduction].first %></p>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <th><%= f.label :date, "日付" %></th>
-            <td><%= f.date_field :date %></td>
+            <td>
+              <%= f.date_field :date %>
+              <% if @event.errors.any? %>
+                <% if @event.errors.has_key?(:date) %>
+                  <p class="text-danger"><%= @event.errors[:date].first %></p>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <th><%= f.label :place, "場所" %></th>
-            <td><%= f.text_field :place %></td>
+            <td>
+              <%= f.text_field :place, autocomplete: "place", placeholder: "開催地", style: "width:100%" %>
+              <% if @event.errors.any? %>
+                <% if @event.errors.has_key?(:place) %>
+                  <p class="text-danger"><%= @event.errors[:place].first %></p>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <th><%= f.label :schedule, "スケジュール" %></th>
-            <td><%= f.text_area :schedule, autocomplete: "schedule", placeholder: "30日11:00　集合", style: "width:100%", rows: "5" %></td>
+            <td>
+              <%= f.text_area :schedule, autocomplete: "schedule", placeholder: "30日11:00　集合", style: "width:100%", rows: "5" %>
+              <% if @event.errors.any? %>
+                <% if @event.errors.has_key?(:schedule) %>
+                  <p class="text-danger"><%= @event.errors[:schedule].first %></p>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <th><%= f.label :number_of_people, "募集予定人数" %></th>
-            <td><%= f.number_field :number_of_people, placeholder: "10", min: "1" %>人</td>
+            <td>
+              <div class="d-flex">
+                <%= f.number_field :number_of_people, placeholder: "10", min: "1" %>人
+              </div>
+              <% if @event.errors.any? %>
+                <% if @event.errors.has_key?(:number_of_people) %>
+                  <p class="text-danger"><%= @event.errors[:number_of_people].first %></p>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <th><%= f.label :is_recruiting, "募集状況" %></th>
@@ -68,9 +112,8 @@
           </tr>
           <tr>
             <th><%= f.label :image, "画像" %></th>
-            <td><%= f.file_field :image, accept: "image/*" %><br>※任意</td>
+            <td><%= f.file_field :image, accept: "image/*", style: "width:100%" %><br>※任意</td>
           </tr>
-
         </table>
       </div>
     </div>

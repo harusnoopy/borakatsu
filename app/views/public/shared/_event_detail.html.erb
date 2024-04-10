@@ -1,10 +1,10 @@
 <tr>
-  <th class="pt-3 pr-5">イベント名</th>
-  <td class="pt-3"><%= event.name %></td>
+  <th class="row-heading">イベント名</th>
+  <td><%= event.name %></td>
 </tr>
 <tr>
-  <th class="pt-3 pr-5">主催者</th>
-  <td class="pt-3">
+  <th class="row-heading">主催者</th>
+  <td>
     <% if admin_signed_in? %>
       <%= link_to admin_organizer_path(event.organizer.id) do %>
         <%= event.organizer.name %>
@@ -17,22 +17,22 @@
   </td>
 </tr>
 <tr>
-  <th class="pt-3 pr-5 d-flex align-items-stretch">イベント詳細</th>
-  <td class="pt-3"><%=safe_join(event.introduction.split("\n"),tag(:br)) %></td>
+  <th class="row-heading">イベント詳細</th>
+  <td><%=safe_join(event.introduction.split("\n"),tag(:br)) %></td>
 </tr>
 <tr>
-  <th class="pt-3 pr-5">開催日</th>
-  <td class="pt-3"><%= event.date.strftime('%Y/%m/%d') %></td>
+  <th class="row-heading">開催日</th>
+  <td><%= event.date.strftime('%Y/%m/%d') %></td>
 </tr>
 <tr>
-  <th class="pt-3 pr-5">場所</th>
-  <td class="pt-3"><%= event.place %></td>
+  <th class="row-heading">場所</th>
+  <td><%= event.place %></td>
 </tr>
 <tr>
-  <th class="pt-3 pr-5 d-flex align-items-stretch">スケジュール</th>
-  <td class="pt-3"><%=safe_join(event.schedule.split("\n"),tag(:br)) %></td>
+  <th class="row-heading">スケジュール</th>
+  <td><%=safe_join(event.schedule.split("\n"),tag(:br)) %></td>
 </tr>
 <tr>
-  <th class="pt-3 pr-5">募集人数</th>
-  <td class="pt-3"><%= event.number_of_people %>名</td>
+  <th class="row-heading">募集人数</th>
+  <td><%= event.number_of_people %>名</td>
 </tr>

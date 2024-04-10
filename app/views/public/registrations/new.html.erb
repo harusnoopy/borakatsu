@@ -29,9 +29,23 @@
           <tr>
             <td><%= f.label :name, "名前", class: "my-2" %></td>
             <td>(姓)</td>
-            <td><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "令和", style: "width:100%" %></td>
+            <td>
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "令和", style: "width:100%" %>
+              <% if @user.errors.any? %>
+                <% if @user.errors.has_key?(:last_name) %>
+                  <p class="text-danger"><%= @user.errors[:last_name].first %></p>
+                <% end %>
+              <% end %>
+            </td>
             <td>　　(名)</td>
-            <td><%= f.text_field :first_name, autocomplete: "first_name", placeholder: "道子", style: "width:100%" %></td>
+            <td>
+              <%= f.text_field :first_name, autocomplete: "first_name", placeholder: "道子", style: "width:100%" %>
+              <% if @user.errors.any? %>
+                <% if @user.errors.has_key?(:first_name) %>
+                  <p class="text-danger"><%= @user.errors[:first_name].first %></p>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         </div>
 
@@ -39,23 +53,51 @@
           <tr>
             <td><%= f.label :name_kana, "フリガナ", class: "my-2" %></td>
             <td>(セイ)</td>
-            <td><%= f.text_field :last_name_kana, autocomplete: "last_name_kana", placeholder: "レイワ", style: "width:100%" %></td>
+            <td>
+              <%= f.text_field :last_name_kana, autocomplete: "last_name_kana", placeholder: "レイワ", style: "width:100%" %>
+              <% if @user.errors.any? %>
+                <% if @user.errors.has_key?(:last_name_kana) %>
+                  <p class="text-danger"><%= @user.errors[:last_name_kana].first %></p>
+                <% end %>
+              <% end %>
+            </td>
             <td>　　(メイ)</td>
-            <td><%= f.text_field :first_name_kana, autocomplete: "first_name_kana", placeholder: "ミチコ", style: "width:100%" %></td>
+            <td>
+              <%= f.text_field :first_name_kana, autocomplete: "first_name_kana", placeholder: "ミチコ", style: "width:100%" %>
+              <% if @user.errors.any? %>
+                <% if @user.errors.has_key?(:first_name_kana) %>
+                  <p class="text-danger"><%= @user.errors[:first_name_kana].first %></p>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         </div>
 
         <div class="field">
           <tr>
             <td><%= f.label :email, "メールアドレス", class: "my-2" %></td>
-            <td></td><td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@examle.com", style: "width:100%" %></td><td colspan="2"></td>
+            <td></td><td>
+              <%= f.email_field :email, autocomplete: "email", placeholder: "sample@examle.com", style: "width:100%" %>
+              <% if @user.errors.any? %>
+                <% if @user.errors.has_key?(:email) %>
+                  <p class="text-danger"><%= @user.errors[:email].first %></p>
+                <% end %>
+              <% end %>
+            </td><td colspan="2"></td>
           </tr>
         </div>
 
         <div class="field">
           <tr>
             <td><%= f.label :telephone_number, "電話番号", class: "my-2" %></td>
-            <td></td><td><%= f.text_field :telephone_number, autocomplete: "telephone_number", placeholder: "00000000000", style: "width:100%" %></td><td colspan="2"></td>
+            <td></td><td>
+              <%= f.text_field :telephone_number, autocomplete: "telephone_number", placeholder: "00000000000", style: "width:100%" %>
+              <% if @user.errors.any? %>
+                <% if @user.errors.has_key?(:telephone_number) %>
+                  <p class="text-danger"><%= @user.errors[:telephone_number].first %></p>
+                <% end %>
+              <% end %>
+            </td><td colspan="2"></td>
           </tr>
         </div>
 
@@ -64,14 +106,28 @@
             <td><%= f.label :password, "パスワード(6文字以上)", class: "my-2" %></td>
             <% if @minimum_password_length %>
             <% end %>
-            <td></td><td><%= f.password_field :password, autocomplete: "new-password", style: "width:100%" %></td><td colspan="2"></td>
+            <td></td><td>
+              <%= f.password_field :password, autocomplete: "new-password", style: "width:100%" %>
+              <% if @user.errors.any? %>
+                <% if @user.errors.has_key?(:password) %>
+                  <p class="text-danger"><%= @user.errors[:password].first %></p>
+                <% end %>
+              <% end %>
+            </td><td colspan="2">
           </tr>
         </div>
 
         <div class="field">
           <tr>
             <td><%= f.label :password_confirmation, "パスワード(確認用)", class: "my-2" %></td>
-            <td></td><td><%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width:100%" %></td><td colspan="2"></td>
+            <td></td><td>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width:100%" %>
+              <% if @user.errors.any? %>
+                <% if @user.errors.has_key?(:password_confirmation) %>
+                  <p class="text-danger"><%= @user.errors[:password_confirmation].first %></p>
+                <% end %>
+              <% end %>
+            </td><td colspan="2"></td>
           </tr>
         </div>
 

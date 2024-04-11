@@ -26,8 +26,4 @@ class User < ApplicationRecord
   validates :telephone_number, presence: true
   validates :email, presence: true
 
-  def password_required?
-    super && persisted?
-  end
-
 end

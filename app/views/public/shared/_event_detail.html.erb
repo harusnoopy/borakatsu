@@ -1,9 +1,9 @@
 <tr>
-  <th class="row-heading">イベント名</th>
+  <th>イベント名</th>
   <td><%= event.name %></td>
 </tr>
 <tr>
-  <th class="row-heading">主催者</th>
+  <th>主催者</th>
   <td>
     <% if admin_signed_in? %>
       <%= link_to admin_organizer_path(event.organizer.id) do %>
@@ -17,22 +17,22 @@
   </td>
 </tr>
 <tr>
-  <th class="row-heading">イベント詳細</th>
+  <th>イベント詳細</th>
   <td><%=safe_join(event.introduction.split("\n"),tag(:br)) %></td>
 </tr>
 <tr>
-  <th class="row-heading">開催日</th>
+  <th>開催日</th>
   <td><%= event.date.strftime('%Y/%m/%d') %></td>
 </tr>
 <tr>
-  <th class="row-heading">場所</th>
+  <th>場所</th>
   <td><%= event.place %></td>
 </tr>
 <tr>
-  <th class="row-heading">スケジュール</th>
+  <th>スケジュール</th>
   <td><%=safe_join(event.schedule.split("\n"),tag(:br)) %></td>
 </tr>
 <tr>
-  <th class="row-heading">募集人数</th>
+  <th>募集人数</th>
   <td><%= event.number_of_people %>名</td>
 </tr>

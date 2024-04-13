@@ -14,7 +14,7 @@
       <table class="table table-borderless">
         <%= render 'public/shared/event_detail', event: @event %>
         <tr>
-          <th class="row-heading">募集状況</th>
+          <th>募集状況</th>
           <td>
             <% if @event.is_recruiting == true %>
               <p class="text-success m-0"><strong>募集中</strong></p>

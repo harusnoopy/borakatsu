@@ -10,7 +10,7 @@
       <table class="table table-borderless">
         <%= render 'public/shared/event_detail', event: @event %>
         <tr>
-          <th class="row-heading">応募人数</th>
+          <th>応募人数</th>
           <td>
             <%= link_to admin_event_participations_path(@event.id) do %>
               <%= @event.participations.select { |participation| participation.is_applying == true }.count %>名
@@ -18,7 +18,7 @@
           </td>
         </tr>
         <tr>
-          <th class="row-heading">募集状況</th>
+          <th>募集状況</th>
           <td>
             <% if @event.is_recruiting == true %>
               <p class="text-success m-0"><strong>募集中</strong></p>
